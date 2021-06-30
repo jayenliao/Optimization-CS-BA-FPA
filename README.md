@@ -19,7 +19,7 @@ This project aimed to implement three well-known meta-heuristic algorithms: cuck
 1. Train CS with defaulted #runs and #replications.
 
 ```bash
-python3 main.py -a 'BA' 
+python3 main.py -a 'CS' 
 ```
 
 2. Rrain CS, BA, and FPA with 1000 runs and 20 replication on objective function 1 and save outputs under the given folder.
