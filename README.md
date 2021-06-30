@@ -4,6 +4,8 @@ This project aimed to implement three well-known meta-heuristic algorithms: cuck
 
 ## Files
 
+- `Optimization_hw3_RE6094028-updated.pdf`: the report file
+
 - `args.py`: the definition the arguments parser
 
 - `objs.py`: the definitions of objective functions
