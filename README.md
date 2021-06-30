@@ -17,19 +17,19 @@ This project aimed to implement three well-known meta-heuristic algorithms: cuck
 
 ## Usage examples
 
-1. Train CS with defaulted #runs and #replications.
+1. Train _CS_ with defaulted #runs and #replications.
 
 ```bash
 python3 main.py -a 'CS' 
 ```
 
-2. Rrain CS, BA, and FPA with 1000 runs and 20 replication on objective function 1 and save outputs under the given folder.
+2. Rrain *CS*, *BA*, and *FPA* with *1000* runs and *20* replication on objective function *1* and save outputs under the given folder.
 
 ```bash
 python3 main.py -as 'CS' 'BA' 'FPA' -r 20 -t 1000 -f 1 -path './output_f1/' 
 ```
 
-3. Train CS, BA, and FPA with 1000 runs and 20 replication on objective function 2 with lambda-tuning and save outputs under the given folder.
+3. Train *CS*, *BA*, and *FPA* with *1000* runs and *20* replication on objective function *2* with lambda-tuning with given candidate values and save outputs under the given folder.
 
 ```bash
 python3 exp_lambda.py -as 'CS' 'BA' 'FPA' -r 20 -t 1000 -f 2 -path './output_exp_lambda/f2/'
