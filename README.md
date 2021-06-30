@@ -7,12 +7,13 @@ This project aimed to implement three well-known meta-heuristic algorithms: cuck
 - `args.py`: the definition the arguments parser
 - `objs.py`: the definitions of objective functions
 - `algorithms.py`: the implements of CS, BA, and FPA
-- `main.py`: the main program to train CS, BA, and FPA
+- `main.py`: the main program of training CS, BA, and FPA
 - `exp_lambda`: the procedure of training CS, BA, and FPA with lambda-tuning
 - `./output_f1/` contains subfolders with results of different trainings on objective function 1.
 - `./output_f2/` contains subfolders with results of different trainings on objective function 2.
 - `./output_exp_lambda/f1/` contains subfolders with results of different trainings on objective function 1 with lambda-tuning.
 - `./output_exp_lambda/f2/` contains subfolders with results of different trainings on objective function 2 with lambda-tuning.
+- `./stacked_plots/` contains stacked plots which plot training curves together.
 
 ## Usage examples
 
