@@ -29,19 +29,20 @@ if __name__ == '__main__':
         'light': ('sandybrown', 'limegreen', '#089FFF', 'violet')
     }
 
-    # Plot different algorithms together
-    for OBJ in (1, 2):
-        plt.figure()
-        fn = os.path.join(args.savePATH, 'plot_globalv_algorithms_f' + str(OBJ) + '.png')
-        for i, A in enumerate(('CS', 'BA', 'FPA')):
-            loadPATH = os.path.join('./output_r20/f' + str(OBJ), A, 'arr_globalv.txt')
-            plot_together(loadPATH, COLORS, i, A, fn)
-            
-    
-    # Plot different objective functions together
-    for A in ('CS', 'BA', 'FPA'):
-        plt.figure()
-        fn = os.path.join(args.savePATH, 'plot_globalv_functions_' + A + '.png')
+    for d in ('10', '20'):
+        # Plot different algorithms together
         for OBJ in (1, 2):
-            loadPATH = os.path.join('./output_r20/f' + str(OBJ), A, 'arr_globalv.txt')
-            plot_together(loadPATH, COLORS, OBJ-1, 'function '+ str(OBJ), fn)
+            plt.figure()
+            fn = os.path.join(args.savePATH, 'plot_globalv_algorithms_f' + str(OBJ) + '_d' + d + '.png')
+            for i, A in enumerate(('CS', 'BA', 'FPA')):
+                loadPATH = os.path.join('./output_r20/f' + str(OBJ) + 'd' + d, A, 'arr_globalv.txt')
+                plot_together(loadPATH, COLORS, i, A, fn)
+                
+        
+        # Plot different objective functions together
+        for A in ('CS', 'BA', 'FPA'):
+            plt.figure()
+            fn = os.path.join(args.savePATH, 'plot_globalv_functions_' + A + '_d' + d + '.png')
+            for OBJ in (1, 2):
+                loadPATH = os.path.join('./output_r20/f' + str(OBJ) + 'd' + d, A, 'arr_globalv.txt')
+                plot_together(loadPATH, COLORS, OBJ-1, 'function '+ str(OBJ), fn)

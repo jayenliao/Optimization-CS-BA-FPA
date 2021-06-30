@@ -20,11 +20,11 @@ def main(args, r=None, return_results=False):
     algorithm_name = args.algorithm
 
     if algorithm_name == 'CS':
-        algorithm = cuck(lamb=args.lamb, pa=.25, N=N, d=20, obj=OBJ)
+        algorithm = cuck(lamb=args.lamb, pa=.25, N=N, d=args.dimension, obj=OBJ)
     elif algorithm_name == 'BA':
-        algorithm = bat(fmax=1, A0=1, R0=1, N=N, d=20, obj=OBJ)
+        algorithm = bat(fmax=1, A0=1, R0=1, N=N, d=args.dimension, obj=OBJ)
     elif algorithm_name == 'FPA':
-        algorithm = flower(lamb=args.lamb, pa=.25, N=N, d=20, obj=OBJ)
+        algorithm = flower(lamb=args.lamb, pa=.25, N=N, d=args.dimension, obj=OBJ)
     initial_vectexs = algorithm.vectexs['x'].copy()
 
     if r:
