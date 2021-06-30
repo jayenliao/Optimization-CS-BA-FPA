@@ -34,4 +34,8 @@ python3 main.py -as 'CS' 'BA' 'FPA' -r 20 -t 1000 -f 1 -path './output_f1/'
 python3 exp_lambda.py -as 'CS' 'BA' 'FPA' -r 20 -t 1000 -f 2 -path './output_exp_lambda/f2/'
 ```
 
+- Plot training curves together
 
+```bash
+python3 stacked_plots.py -path './stack_plots/'
+```
