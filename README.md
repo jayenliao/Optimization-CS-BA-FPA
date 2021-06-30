@@ -20,26 +20,44 @@ This project aimed to implement three well-known meta-heuristic algorithms: cuck
 
 - `./output_r1/` contains subfolders with results of different trainings with 1 replication.
 
-    - `~/f1/`: trained on objective 1
+    - `~/f1d10/`: trained on objective 1 with 10-d points
         - `~/CS/`, `~/BA/`, and `~/FPA/`
 
-    - `~/f2`: trained on objective 2
+    - `~/f2d10`: trained on objective 2 with 10-d points
+        - `~/CS/`, `~/BA/`, and `~/FPA/`
+
+    - `~/f1d20/`: trained on objective 1 with 20-d points
+        - `~/CS/`, `~/BA/`, and `~/FPA/`
+
+    - `~/f2d20`: trained on objective 2 with 20-d points
         - `~/CS/`, `~/BA/`, and `~/FPA/`
 
 - `./output_r20/` contains subfolders with results of different trainings with 20 replications.
 
-    - `~/f1/`: trained on objective 1
+    - `~/f1d10/`: trained on objective 1 with 10-d points
         - `~/CS/`, `~/BA/`, and `~/FPA/`
 
-    - `~/f2`: trained on objective 2
+    - `~/f2d10`: trained on objective 2 with 10-d points
+        - `~/CS/`, `~/BA/`, and `~/FPA/`
+
+    - `~/f1d20/`: trained on objective 1 with 20-d points
+        - `~/CS/`, `~/BA/`, and `~/FPA/`
+
+    - `~/f2d20`: trained on objective 2 with 20-d points
         - `~/CS/`, `~/BA/`, and `~/FPA/`
 
 - `./output_exp_lambda/` contains subfolders with results of different trainings with lambda-tuning.
 
-    - `~/f1/`: trained on objective 1
+    - `~/f1d10/`: trained on objective 1 with 10-d points
         - `~/CS/` and `~/FPA/`
 
-    - `~/f2`: trained on objective 2
+    - `~/f2d10`: trained on objective 2 with 10-d points
+        - `~/CS/` and `~/FPA/`
+
+    - `~/f1d20/`: trained on objective 1 with 20-d points
+        - `~/CS/` and `~/FPA/`
+
+    - `~/f2d20`: trained on objective 2 with 20-d points
         - `~/CS/` and `~/FPA/`
 
 - `./scatter_plots/` contains scatter plots of initial and final points with 2 randomly-seleced dimensions and with 2 tSNE dimensions.
