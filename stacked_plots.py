@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from args import init_arguments
 
-def plot_together(args, loadPATH, COLORS, i, label, fn):
+def plot_together(loadPATH, COLORS, i, label, fn):
     arr_globalv = np.loadtxt(loadPATH)
     m = arr_globalv.mean(axis=0)
     err = arr_globalv.std(axis=0)
@@ -34,8 +34,8 @@ if __name__ == '__main__':
         plt.figure()
         fn = os.path.join(args.savePATH, 'plot_globalv_algorithms_f' + str(OBJ) + '.png')
         for i, A in enumerate(('CS', 'BA', 'FPA')):
-            loadPATH = os.path.join('output_f' + str(OBJ), A, 'arr_globalv.txt')
-            plot_together(args, loadPATH, COLORS, i, A, fn)
+            loadPATH = os.path.join('./output_r20/f' + str(OBJ), A, 'arr_globalv.txt')
+            plot_together(loadPATH, COLORS, i, A, fn)
             
     
     # Plot different objective functions together
@@ -43,5 +43,5 @@ if __name__ == '__main__':
         plt.figure()
         fn = os.path.join(args.savePATH, 'plot_globalv_functions_' + A + '.png')
         for OBJ in (1, 2):
-            loadPATH = os.path.join('output_f' + str(OBJ), A, 'arr_globalv.txt')
-            plot_together(args, loadPATH, COLORS, OBJ-1, 'function '+ str(OBJ), fn)
+            loadPATH = os.path.join('./output_r20/f' + str(OBJ), A, 'arr_globalv.txt')
+            plot_together(loadPATH, COLORS, OBJ-1, 'function '+ str(OBJ), fn)
