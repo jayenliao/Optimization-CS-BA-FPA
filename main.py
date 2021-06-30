@@ -1,6 +1,5 @@
 import os, time, random
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 from algorithms import cuck, bat, flower
@@ -49,6 +48,51 @@ def main(args, r=None, return_results=False):
     if return_results:
         return algorithm.time_cost, algorithm.lst_globalv, algorithm.vectexs['x']
 
+def training_curve(args, COLORS, i, legend=False):
+    arr_time_cost, arr_globalv = [], []
+    fn = os.path.join(args.savePATH, 'plot_globalv.png')
+    for r in range(args.replications):
+        time_cost, lst_globalv, vectexs = main(args, r=r, return_results=True)
+        args.seed += 1
+        arr_time_cost.append(time_cost)
+        arr_globalv.append(lst_globalv)
+
+    x = np.arange(args.training_times)
+    arr_globalv = np.array(arr_globalv)
+    m = arr_globalv.mean(axis=0)
+    err = arr_globalv.std(axis=0)
+    if legend:
+        plt.plot(x, m, c=COLORS['deep'][i], label=args.lamb)
+        plt.legend()
+    else:
+        plt.plot(x, m, c=COLORS['deep'][i])
+    plt.fill_between(x, m-err, m+err, facecolor=COLORS['light'][i], alpha=.2)
+    plt.title('The Training Curve of The Global Best Value of ' + args.algorithm)
+    plt.xlabel('Epoch')
+    plt.ylabel('Global Best Value')
+    plt.grid(linestyle='--')
+    plt.savefig(fn)    
+    print('Results of %d replications are save together as' % args.replications)
+    print('-->', fn)
+
+    fn = os.path.join(args.savePATH, 'vectexs.txt')
+    np.savetxt(fn, np.array(vectexs))
+    print('-->', fn)
+
+    fn = os.path.join(args.savePATH, 'arr_globalv.txt')
+    np.savetxt(fn, arr_globalv)
+    print('-->', fn)
+        
+    fn = os.path.join(args.savePATH, 'arr_time_cost.txt')
+    arr_time_cost = np.array(arr_time_cost)
+    np.savetxt(fn, arr_time_cost)
+    print('-->', fn)
+
+    print('Average time cost per run of %s: %.4f\n' % (args.algorithm, arr_time_cost.mean()))
+    print('-'*30)
+    print()
+
+
 if __name__ == '__main__':
     args = init_arguments().parse_args()
     args.algorithms = [args.algorithm] if args.algorithms == '' else args.algorithms
@@ -61,42 +105,6 @@ if __name__ == '__main__':
     for i, A in enumerate(args.algorithms):
         args.algorithm = A
         args.savePATH = os.path.join(PATH, A)
-        arr_time_cost, arr_globalv = [], []
-        fn = os.path.join(args.savePATH, 'plot_globalv.png')
-        
         plt.figure()
-        for r in range(args.replications):
-            time_cost, lst_globalv, vectexs = main(args, r=r, return_results=True)
-            args.seed += 1
-            arr_time_cost.append(time_cost)
-            arr_globalv.append(lst_globalv)
-        x = np.arange(args.training_times)
-        arr_globalv = np.array(arr_globalv)
-        m = arr_globalv.mean(axis=0)
-        err = arr_globalv.std(axis=0)
-        plt.plot(x, m, c=COLORS['deep'][i])
-        plt.fill_between(x, m-err, m+err, facecolor=COLORS['light'][i], alpha=.2)
-        plt.title('The Training Curve of The Global Best Value of ' + A)
-        plt.xlabel('Epoch')
-        plt.ylabel('Global Best Value')
-        plt.grid(linestyle='--')
-        plt.savefig(fn)    
-        print('Results of %d replications are save together as' % args.replications)
-        print('-->', fn)
-
-        fn = os.path.join(args.savePATH, 'vectexs.txt')
-        np.savetxt(fn, np.array(vectexs))
-        print('-->', fn)
-
-        fn = os.path.join(args.savePATH, 'arr_globalv.txt')
-        np.savetxt(fn, arr_globalv)
-        print('-->', fn)
+        training_curve(args, COLORS, i)
         
-        fn = os.path.join(args.savePATH, 'arr_time_cost.txt')
-        arr_time_cost = np.array(arr_time_cost)
-        np.savetxt(fn, arr_time_cost)
-        print('-->', fn)
-
-        print('Average time cost per run of %s: %.4f\n' % (A, arr_time_cost.mean()))
-        print('-'*30)
-        print()
