@@ -25,6 +25,7 @@ def main(args, r=None, return_results=False):
         algorithm = bat(fmax=1, A0=1, R0=1, N=N, d=20, obj=OBJ)
     elif algorithm_name == 'FPA':
         algorithm = flower(lamb=args.lamb, pa=.25, N=N, d=20, obj=OBJ)
+    initial_vectexs = algorithm.vectexs['x'].copy()
 
     if r:
         print('Training for replication %d ...' % r)
@@ -46,13 +47,13 @@ def main(args, r=None, return_results=False):
     
     print('Time cost of %s: %6.2f s.\n' % (algorithm_name, time.time() - t0))
     if return_results:
-        return algorithm.time_cost, algorithm.lst_globalv, algorithm.vectexs['x']
+        return algorithm.time_cost, algorithm.lst_globalv, algorithm.vectexs['x'], initial_vectexs
 
 def training_curve(args, COLORS, i, legend=False):
     arr_time_cost, arr_globalv = [], []
     fn = os.path.join(args.savePATH, 'plot_globalv.png')
     for r in range(args.replications):
-        time_cost, lst_globalv, vectexs = main(args, r=r, return_results=True)
+        time_cost, lst_globalv, vectexs, initial_vectexs = main(args, r=r, return_results=True)
         args.seed += 1
         arr_time_cost.append(time_cost)
         arr_globalv.append(lst_globalv)
@@ -77,6 +78,10 @@ def training_curve(args, COLORS, i, legend=False):
 
     fn = os.path.join(args.savePATH, 'vectexs.txt')
     np.savetxt(fn, np.array(vectexs))
+    print('-->', fn)
+
+    fn = os.path.join(args.savePATH, 'initial_vectexs.txt')
+    np.savetxt(fn, np.array(initial_vectexs))
     print('-->', fn)
 
     fn = os.path.join(args.savePATH, 'arr_globalv.txt')
